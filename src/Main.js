@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import APICalls from './APICalls';
 import Button from '@material-ui/core/Button';
-import green from '@material-ui/core/colors/green';
 
 /*
  * Contains buttons that interact with API.
@@ -18,7 +17,6 @@ class Main extends Component {
    *   - type: the type of request being made as a string value.
    */
   setUpRequest(type) {
-    console.log(this.state.token);
     switch(type) {
       case "log in":
         APICalls.postLogin(this.state);
@@ -47,12 +45,12 @@ class Main extends Component {
     return (
       <div>
         <h3>Main page</h3>
-        <Button className="mainButton" variant="raised" color="rgb(106, 216, 67)"
+        <Button variant="raised" color="primary"
         onClick={() => this.setUpRequest("log in", "")}>
           Log in
         </Button>
         <br />
-        <Button className="mainButton" variant="raised" color="green"
+        <Button className="mainButton" variant="raised" color="primary"
         onClick={() => this.setUpRequest("random product")}>
           Get random product
         </Button>
