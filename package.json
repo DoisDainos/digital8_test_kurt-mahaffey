@@ -1,7 +1,7 @@
 {
   "name": "test-ui",
   "version": "0.1.0",
-  "homepage": "http://doisdainos.github.io/digital8_test_kurt-mahaffey",
+  "homepage": "https://doisdainos.github.io/digital8_test_kurt-mahaffey",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.1.0",

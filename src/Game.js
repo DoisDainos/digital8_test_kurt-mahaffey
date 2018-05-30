@@ -17,6 +17,7 @@ class Game extends Component {
   setUpRequest() {
     var token = this.props.location.pathname.split("/")[2];
     APICalls.getRandomProduct(token);
+    console.log(token);
   }
 
   render() {
