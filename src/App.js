@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {Route, HashRouter} from 'react-router-dom';
+import { Route, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import Main from './Main';
+import Game from './Game';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 import AppBar from '@material-ui/core/AppBar';
@@ -23,19 +24,17 @@ const theme = createMuiTheme({
 class App extends Component {
   render() {
     return (
-      <HashRouter>
-        <MuiThemeProvider theme={theme}>
-          <div className="App">
-            <AppBar position="static" style={{ color: 'white' }}>
-              <h1 className="App-title">Digital8 test</h1>
-
-            </AppBar>
-            <div className="App-content">
-              <Route exact path="/" component={Main}/>
-            </div>
+      <MuiThemeProvider theme={theme}>
+        <div className="App">
+          <AppBar position="static" style={{ color: 'white' }}>
+            <h1 className="App-title">Digital8 test</h1>
+          </AppBar>
+          <div className="App-content">
+            <Route exact path="/" component={Main}/>
+            <Route path="/Game" component={Game}/>
           </div>
-        </MuiThemeProvider>
-      </HashRouter>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

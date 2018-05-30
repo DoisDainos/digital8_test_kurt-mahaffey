@@ -1,22 +1,21 @@
-import React, {Component} from 'react';
 
 /*
   Defines functions for API calls.
 */
-export class APICalls extends Component {
+export class APICalls {
   /*
    * Post log in with email and password.
    * Returns a token to be used for other API calls.
    * Parameters:
    * - pageState: the state containing token prop to be altered.
    */
-  static postLogin(pageState) {
+  static postLogin(component) {
     var xhr = new XMLHttpRequest();
     var data = "email=bryce%40digital8.com.au&password=bryce";
     xhr.withCredentials = false;
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {
-        pageState.token = JSON.parse(this.responseText)["data"]["token"];
+        component.setState({token: JSON.parse(this.responseText)["data"]["token"]});
       }
     });
     xhr.open("POST", "http://54.79.111.71:1337/api//user/login");

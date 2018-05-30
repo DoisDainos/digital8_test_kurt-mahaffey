@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, BrowserRouter } from 'react-router-dom';
 import APICalls from './APICalls';
 import Button from '@material-ui/core/Button';
 
@@ -12,49 +13,32 @@ class Main extends Component {
   }
 
   /*
-   * Choose request type for API.
+   * Calls API function for login
    * Parameters:
    *   - type: the type of request being made as a string value.
    */
-  setUpRequest(type) {
-    switch(type) {
-      case "log in":
-        APICalls.postLogin(this.state);
-        break;
-      case "random product":
-        APICalls.getRandomProduct(this.state.token);
-        break;
-      case "one product":
-        APICalls.getOneProduct(this.state.token);
-        break;
-      case "one bundle":
-        APICalls.getOneBundle(this.state.token);
-        break;
-      case "all categories":
-        APICalls.getAllCategories(this.state.token);
-        break;
-      case "one category":
-        APICalls.getOneCategory(this.state.token);
-        break;
-      default:
-        console.log("API call type not found.")
-    }
+  setUpRequest() {
+    APICalls.postLogin(this);
+    console.log(this.state.token);
+  }
+
+  componentWillMount() {
+    this.setUpRequest();
+  }
+
+  componentDidMount() {
+    console.log(this.state.token);
   }
 
   render() {
     return (
       <div>
         <h3>Main page</h3>
-        <Button variant="raised" color="primary"
-        onClick={() => this.setUpRequest("log in", "")}>
-          Log in
-        </Button>
-        <br />
-        <Button className="mainButton" variant="raised" color="primary"
-        onClick={() => this.setUpRequest("random product")}>
-          Get random product
-        </Button>
-        <br />
+        <Link to={'/Game/' + this.state.token} style={{ textDecoration: 'none' }}>
+          <Button variant="raised" color="primary">
+            Navigate
+          </Button>
+        </Link>
         <div id="imageFrame"/>
       </div>
     );

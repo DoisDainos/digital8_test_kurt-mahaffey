@@ -1,5 +1,6 @@
 .App {
   text-align: left;
+  text-decoration: none;
 }
 
 .App-title {
@@ -13,4 +14,12 @@
 
 .mainButton {
   margin-top: 10px;
+}
+
+.navThing {
+  height: 20px;
+  width: 20px;
+  background-color: black;
+  border: 10px solid black;
+  margin: 50px;
 }
