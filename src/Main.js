@@ -19,22 +19,17 @@ class Main extends Component {
    */
   setUpRequest() {
     APICalls.postLogin(this);
-    console.log(this.state.token);
   }
 
   componentWillMount() {
     this.setUpRequest();
   }
 
-  componentDidMount() {
-    console.log(this.state.token);
-  }
-
   render() {
     return (
       <div>
         <h3>Main page</h3>
-        <Link to={'/Game/' + this.state.token} style={{ textDecoration: 'none' }}>
+        <Link to={'/Categories/' + this.state.token} style={{ textDecoration: 'none' }}>
           <Button variant="raised" color="primary">
             Navigate
           </Button>

@@ -7,7 +7,7 @@ export class APICalls {
    * Post log in with email and password.
    * Returns a token to be used for other API calls.
    * Parameters:
-   * - pageState: the state containing token prop to be altered.
+   * - component: the component with token prop to be altered.
    */
   static postLogin(component) {
     var xhr = new XMLHttpRequest();
@@ -110,16 +110,18 @@ export class APICalls {
   /*
    * Get a list of all categories.
    * Parameters:
-   * - token: the string value to be sent in the request header.
+   * - component: component with token prop and categories prop to be altered.
+   * - token: token of the component for API calls.
    */
-  static getAllCategories(token) {
+  static getAllCategories(component, token) {
     var xhr = new XMLHttpRequest();
     var data = null;
 
     xhr.withCredentials = false;
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {
-        console.log(this.responseText);
+        var response = JSON.parse(this.responseText)["data"];
+        component.setState({categories: response});
       }
     });
 

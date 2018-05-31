@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
 import Main from './Main';
 import Game from './Game';
+import Categories from './Categories';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 import AppBar from '@material-ui/core/AppBar';
@@ -32,6 +33,7 @@ class App extends Component {
           <div className="App-content">
             <Route exact path="/" component={Main}/>
             <Route path="/Game" component={Game}/>
+            <Route path="/Categories" component={Categories}/>
           </div>
         </div>
       </MuiThemeProvider>
