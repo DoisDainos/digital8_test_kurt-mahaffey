@@ -30,10 +30,12 @@ class App extends Component {
           <AppBar position="static" style={{ color: 'white' }}>
             <h1 className="App-title">Digital8 test</h1>
           </AppBar>
-          <div className="App-content">
-            <Route exact path="/" component={Main}/>
-            <Route path="/Game" component={Game}/>
-            <Route path="/Categories" component={Categories}/>
+          <div className="App-background">
+            <div className="App-content">
+              <Route exact path="/" component={Main}/>
+              <Route path="/Game" component={Game}/>
+              <Route path="/Categories" component={Categories}/>
+            </div>
           </div>
         </div>
       </MuiThemeProvider>

@@ -1,6 +1,8 @@
 .App {
   text-align: left;
   text-decoration: none;
+  background-color: rgb(224, 224, 224);
+  height: 100vh;
 }
 
 .App-title {
@@ -8,18 +10,14 @@
   text-align: center;
 }
 
+
 .App-content {
-  margin-left: 10px;
+  margin: 50px 100px 0px 100px;
+  background-color: white;
+  box-shadow: 5px 5px rgb(206, 206, 206);
+  padding: 10px;
 }
 
 .mainButton {
   margin-top: 10px;
-}
-
-.navThing {
-  height: 20px;
-  width: 20px;
-  background-color: black;
-  border: 10px solid black;
-  margin: 50px;
 }
