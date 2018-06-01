@@ -41,16 +41,18 @@ class Categories extends Component {
     return (
       <div>
         <h3>Choose a category</h3>
-        <Button variant="raised" color="primary"
-        onClick={() => this.getCategories()}>
-          Get categories
-        </Button>
-        <br /><br />
-        <Link to={'/Game/' + this.state.token} style={{ textDecoration: 'none' }}>
-          <Button variant="raised" color="primary">
-            Navigate
+        <div className="buttons">
+          <Button variant="raised" color="primary"
+          onClick={() => this.getCategories()}>
+            Get categories
           </Button>
-        </Link>
+          <br /><br />
+          <Link to={'/Game/' + this.state.token} style={{ textDecoration: 'none' }}>
+            <Button variant="raised" color="primary">
+              Navigate
+            </Button>
+          </Link>
+        </div>
         <div id="imageFrame"/>
       </div>
     );

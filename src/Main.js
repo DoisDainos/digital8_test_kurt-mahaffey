@@ -28,13 +28,15 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <h3>Main page</h3>
-        <Link to={'/Categories/' + this.state.token} style={{ textDecoration: 'none' }}>
-          <Button variant="raised" color="primary">
-            Navigate
-          </Button>
-        </Link>
-        <div id="imageFrame"/>
+        <h3>Welcome</h3>
+        <p>This is a game.</p>
+        <div className="buttons">
+          <Link to={'/Categories/' + this.state.token} style={{ textDecoration: 'none' }}>
+            <Button variant="raised" color="primary">
+              Continue
+            </Button>
+          </Link>
+        </div>
       </div>
     );
   }

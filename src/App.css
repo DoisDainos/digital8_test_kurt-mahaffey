@@ -1,15 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:regular,bold');
+
 .App {
   text-align: left;
   text-decoration: none;
   background-color: rgb(224, 224, 224);
   height: 100vh;
+  font-family: 'Roboto', sans-serif;
 }
 
 .App-title {
   font-size: 1.5em;
   text-align: center;
 }
-
 
 .App-content {
   margin: 5vh 10vw 0px 10vw;
@@ -18,6 +20,6 @@
   padding: 10px;
 }
 
-.mainButton {
-  margin-top: 10px;
+.buttons {
+  text-align: center;
 }
