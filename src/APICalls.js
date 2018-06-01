@@ -21,13 +21,14 @@ export class APICalls {
     xhr.open("POST", "http://54.79.111.71:1337/api//user/login");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Cache-Control", "no-cache");
-    xhr.setRequestHeader("Postman-Token", "f69f1133-5838-445d-b015-6ac7210759fc");
+    xhr.setRequestHeader("Postman-Token",
+    "f69f1133-5838-445d-b015-6ac7210759fc");
 
     xhr.send(data);
   }
 
   /*
-   * Get a random product.
+   * Get a random product then add its picture to the document frame.
    * Parameters:
    * - token: the string value to be sent in the request header.
    */
@@ -41,8 +42,9 @@ export class APICalls {
         console.log(this.token);
         var jsonResponse = JSON.parse(this.responseText);
         var image = document.createElement("IMG");
-        var random = Math.floor(Math.random() * (jsonResponse["data"].length));
-        var imageDiv = document.getElementById("imageFrame");
+        var random = Math.floor(Math.random() *
+        (jsonResponse["data"].length));
+        var imageDiv = document.getElementById("frame");
 
         while (imageDiv.firstChild) {
           imageDiv.removeChild(imageDiv.firstChild);
@@ -54,7 +56,8 @@ export class APICalls {
     xhr.open("GET", "http://54.79.111.71:1337/api//products");
     xhr.setRequestHeader("x-token", token);
     xhr.setRequestHeader("Cache-Control", "no-cache");
-    xhr.setRequestHeader("Postman-Token", "4f71a0d6-38ce-47a7-bbf6-fea2618f93f4");
+    xhr.setRequestHeader("Postman-Token",
+    "4f71a0d6-38ce-47a7-bbf6-fea2618f93f4");
 
     xhr.send(data);
   }
@@ -78,7 +81,8 @@ export class APICalls {
     xhr.open("GET", "http://54.79.111.71:1337/api//products/1");
     xhr.setRequestHeader("x-token", token);
     xhr.setRequestHeader("Cache-Control", "no-cache");
-    xhr.setRequestHeader("Postman-Token", "f513d1ed-43d6-4446-9e1b-0bef500daaf5");
+    xhr.setRequestHeader("Postman-Token",
+    "f513d1ed-43d6-4446-9e1b-0bef500daaf5");
 
     xhr.send(data);
   }
@@ -102,7 +106,8 @@ export class APICalls {
     xhr.open("GET", "http://54.79.111.71:1337/api//bundles/1");
     xhr.setRequestHeader("x-token", token);
     xhr.setRequestHeader("Cache-Control", "no-cache");
-    xhr.setRequestHeader("Postman-Token", "dd1b4c48-4f8e-4f64-ab1f-d604047a13d8");
+    xhr.setRequestHeader("Postman-Token",
+    "dd1b4c48-4f8e-4f64-ab1f-d604047a13d8");
 
     xhr.send(data);
   }
@@ -128,7 +133,8 @@ export class APICalls {
     xhr.open("GET", "http://54.79.111.71:1337/api//categories");
     xhr.setRequestHeader("x-token", token);
     xhr.setRequestHeader("Cache-Control", "no-cache");
-    xhr.setRequestHeader("Postman-Token", "e7950c88-e0f5-4bc1-a012-02ca46e3e04d");
+    xhr.setRequestHeader("Postman-Token",
+    "e7950c88-e0f5-4bc1-a012-02ca46e3e04d");
 
     xhr.send(data);
   }
@@ -152,7 +158,8 @@ export class APICalls {
     xhr.open("GET", "http://54.79.111.71:1337/api//categories/1");
     xhr.setRequestHeader("x-token", token);
     xhr.setRequestHeader("Cache-Control", "no-cache");
-    xhr.setRequestHeader("Postman-Token", "f038eb57-363f-4326-a486-247c4a3ee2ef");
+    xhr.setRequestHeader("Postman-Token",
+    "f038eb57-363f-4326-a486-247c4a3ee2ef");
 
     xhr.send(data);
   }

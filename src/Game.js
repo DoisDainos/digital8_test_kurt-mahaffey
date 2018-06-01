@@ -28,7 +28,7 @@ class Game extends Component {
         onClick={() => this.setUpRequest()}>
           Get a random product image
         </Button>
-        <div id="imageFrame"/>
+        <div id="frame"/>
       </div>
     );
   }

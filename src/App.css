@@ -20,6 +20,44 @@
   padding: 10px;
 }
 
+#frame {
+  text-align: center;
+}
+
+#col-1 {
+  float: left;
+  width: 49%;
+}
+
+#col-2 {
+  float: right;
+  width: 49%;
+}
+
+.category-list {
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+
+.category-label {
+  border: 2px solid grey;
+  padding: 5px 10px 5px 10px;
+  margin: 0px 5px 10px 5px;
+  transition: all 0.2s;
+}
+
+.category-button {
+  display: none;
+}
+
+.category-button:checked + label {
+  border: 2px solid green;
+}
+
 .buttons {
   text-align: center;
+}
+
+#category-continue {
+  margin-top: 150px;
 }

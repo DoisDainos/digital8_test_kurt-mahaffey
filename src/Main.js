@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, BrowserRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import APICalls from './APICalls';
 import Button from '@material-ui/core/Button';
 
@@ -29,9 +29,11 @@ class Main extends Component {
     return (
       <div>
         <h3>Welcome</h3>
-        <p>This is a game.</p>
+        <p>This is a game. <br />If on https, please allow loading of unsafe
+        scripts for API use.</p>
         <div className="buttons">
-          <Link to={'/Categories/' + this.state.token} style={{ textDecoration: 'none' }}>
+          <Link to={'/Categories/' + this.state.token}
+          style={{ textDecoration: 'none' }}>
             <Button variant="raised" color="primary">
               Continue
             </Button>
