@@ -11,7 +11,8 @@ class Categories extends Component {
     super();
     this.state = {
       token: "",
-      categories: {}
+      categories: [],
+      chosen: ""
     };
   }
 
@@ -32,7 +33,6 @@ class Categories extends Component {
    * Gets categories in state and displpays them as options.
    */
   getCategories() {
-    console.log(this.state.categories);
     var firstColumn = document.getElementById("col-1");
     var secondColumn = document.getElementById("col-2");
     // Clear columns:
@@ -42,12 +42,16 @@ class Categories extends Component {
     while (secondColumn.firstChild) {
       secondColumn.removeChild(secondColumn.firstChild);
     }
+    var buttons = [];
+    document.getElementById("continue").style.display = "none";
     // List each category name as a radio option:
     for (var i=0; i<this.state.categories.length; i++) {
+      var button = document.createElement("BUTTON");
       var radio = document.createElement("INPUT");
       var label = document.createElement("label");
       var element = document.createElement("LI");
       var catName = this.state.categories[i]["name"];
+      var component = this;
       radio.className = "category-button";
       radio.id = i;
       radio.setAttribute("type", "radio");
@@ -55,6 +59,10 @@ class Categories extends Component {
       radio.setAttribute("value", catName);
       label.setAttribute("for", i);
       label.className = "category-label";
+      radio.addEventListener("click", function() {
+        document.getElementById("continue").style.display = "inline-block";
+        component.setState({chosen: this.value});
+      });
       label.appendChild(document.createTextNode(catName))
       element.className = "category-list";
       element.appendChild(radio);
@@ -84,15 +92,15 @@ class Categories extends Component {
           <div id="col-2"/>
         </div>
         <br />
-        <div id = "cat-continue-empty">
-        <div className="buttons">
-          <Link to={'/Game/' + this.state.token}
-          style={{ textDecoration: 'none' }}>
-            <Button variant="raised" color="primary">
-              Continue
-            </Button>
-          </Link>
-        </div>
+        <div id="cat-continue-empty">
+          <div className="buttons">
+            <Link to={'/Game/' + this.state.token + '/' + this.state.chosen}
+            style={{ textDecoration: 'none' }}>
+              <Button id="continue" variant="raised" color="primary">
+                Continue
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     );

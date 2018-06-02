@@ -28,22 +28,30 @@ export class APICalls {
   }
 
   /*
-   * Get a random product then add its picture to the document frame.
+   * Get a random product of a category then add its picture to the document
+   * frame.
    * Parameters:
    * - token: the string value to be sent in the request header.
+   * - category: the category of product to find
    */
-  static getRandomProduct(token) {
+  static getRandomProduct(token, category) {
     var xhr = new XMLHttpRequest();
     var data = null;
 
     xhr.withCredentials = false;
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {
-        console.log(this.token);
         var jsonResponse = JSON.parse(this.responseText);
         var image = document.createElement("IMG");
         var random = Math.floor(Math.random() *
         (jsonResponse["data"].length));
+        var timeout = 0;
+        while (jsonResponse["data"][random]["category"]["name"] !== category
+        && timeout < 30) {
+          random = Math.floor(Math.random() *
+          (jsonResponse["data"].length));
+          timeout += 1;
+        }
         var imageDiv = document.getElementById("frame");
 
         while (imageDiv.firstChild) {
