@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import APICalls from './APICalls';
 import Button from '@material-ui/core/Button';
+import Progress from 'react-progressbar'
 
 /*
  * Contains buttons that interact with API.
@@ -12,7 +13,8 @@ class Game extends Component {
       category: "",
       products: [],
       rounds: 3,
-      score: 0
+      score: 0,
+      progress: 0
     }
   }
 
@@ -27,6 +29,8 @@ class Game extends Component {
     }
     image.setAttribute("src", product["image"]);
     imageDiv.appendChild(image);
+    imageDiv.appendChild(document.createElement("BR"));
+    imageDiv.appendChild(document.createElement("BR"));
   }
 
   /*
@@ -71,6 +75,7 @@ class Game extends Component {
     guess = document.getElementById("input").value;
     if (guess == product["price"]) {
       this.setState({score: this.state.score + 100});
+      this.setState({progress: this.state.progress + 33});
       round += 1;
       if (round === this.state.rounds) {
         this.gameEnd();
@@ -136,6 +141,7 @@ class Game extends Component {
    * Start game by randomsing the order of products and playing the first round.
    */
   startGame() {
+    document.getElementById("game-intro").style.display = "none";
     document.getElementById("start-game").style.display = "none";
     this.shuffleProductsArray();
     this.playRound(0);
@@ -153,10 +159,13 @@ class Game extends Component {
     return (
       <div>
         <h3 id="game-heading">Game page</h3>
+        <p id="game-intro">Guess the price of the items</p>
+        <Progress completed={this.state.progress} />
         <Button id="start-game" variant="raised" color="primary"
         onClick={() => this.startGame()}>
           Start game
         </Button>
+        <br />
         <div id="frame"/>
       </div>
     );

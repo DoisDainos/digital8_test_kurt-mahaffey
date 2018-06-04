@@ -29,7 +29,8 @@ class Main extends Component {
     return (
       <div>
         <h3>Welcome</h3>
-        <p>This is a game. <br />If on https, please allow loading of unsafe
+        <p>This is a game. Pick a category then guess the prices of products
+        from that category. <br />If on https, please allow loading of unsafe
         scripts for API use.</p>
         <div className="buttons">
           <Link to={'/Categories/' + this.state.token}
