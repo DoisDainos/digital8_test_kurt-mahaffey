@@ -58,6 +58,25 @@
   text-align: center;
 }
 
+.dialog-info {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#round-display {
+  width: 100%;
+  display: inline-block;
+}
+
+#score {
+  float: right;
+}
+
+#game-heading {
+  display: inline;
+  float: left;
+}
+
 #category-continue {
   margin-top: 150px;
 }
