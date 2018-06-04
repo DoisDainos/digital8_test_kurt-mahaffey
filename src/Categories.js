@@ -16,13 +16,6 @@ class Categories extends Component {
     };
   }
 
-  /*
-   * Calls API function for random product.
-   */
-  setUpRequest() {
-    APICalls.getRandomProduct(this.state.token);
-  }
-
   componentWillMount() {
     var currentToken = this.props.location.pathname.split("/")[2];
     this.setState({token: currentToken});
@@ -42,11 +35,9 @@ class Categories extends Component {
     while (secondColumn.firstChild) {
       secondColumn.removeChild(secondColumn.firstChild);
     }
-    var buttons = [];
     document.getElementById("continue").style.display = "none";
     // List each category name as a radio option:
     for (var i=0; i<this.state.categories.length; i++) {
-      var button = document.createElement("BUTTON");
       var radio = document.createElement("INPUT");
       var label = document.createElement("label");
       var element = document.createElement("LI");

@@ -28,37 +28,28 @@ export class APICalls {
   }
 
   /*
-   * Get a random product of a category then add its picture to the document
-   * frame.
+   * Get products of a particular category.
    * Parameters:
    * - token: the string value to be sent in the request header.
-   * - category: the category of product to find
+   * - component: react component with products array to set.
+   * - category: the category of product to find.
    */
-  static getRandomProduct(token, category) {
+  static getCategoryProducts(token, component, category) {
     var xhr = new XMLHttpRequest();
     var data = null;
+    var products = [];
+
 
     xhr.withCredentials = false;
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {
         var jsonResponse = JSON.parse(this.responseText);
-        var image = document.createElement("IMG");
-        var random = Math.floor(Math.random() *
-        (jsonResponse["data"].length));
-        var timeout = 0;
-        while (jsonResponse["data"][random]["category"]["name"] !== category
-        && timeout < 30) {
-          random = Math.floor(Math.random() *
-          (jsonResponse["data"].length));
-          timeout += 1;
+        for (var i=0; i<jsonResponse["data"].length; i++) {
+          if (jsonResponse["data"][i]["category"]["name"] === category) {
+            products.push(jsonResponse["data"][i]);
+          }
         }
-        var imageDiv = document.getElementById("frame");
-
-        while (imageDiv.firstChild) {
-          imageDiv.removeChild(imageDiv.firstChild);
-        }
-        image.setAttribute("src", jsonResponse["data"][random]["image"]);
-        imageDiv.appendChild(image);
+        component.setState({products: products});
       }
     });
     xhr.open("GET", "http://54.79.111.71:1337/api//products");
