@@ -11,7 +11,8 @@ class Game extends Component {
     this.state = {
       category: "",
       products: [],
-      rounds: 3
+      rounds: 3,
+      score: 0
     }
   }
 
@@ -44,14 +45,101 @@ class Game extends Component {
     this.setState({products: tempArray});
   }
 
-    /*
-     * Calls API function for random product.
-     */
-    setUpRequest() {
-      this.shuffleProductsArray();
-      this.addProductImageToFrame(this.state.products[0]);
-      console.log(this.state.products);
+  /*
+   * Handles ending the game.
+   */
+  gameEnd() {
+    var frame = document.getElementById("frame");
+    while (frame.firstChild) {
+      frame.removeChild(frame.firstChild);
     }
+    frame.appendChild(document.createTextNode("GAME COMPLETE"));
+    var winDisplay = document.createElement("H4");
+    winDisplay.innerHTML = "Your score: " + this.state.score;
+    frame.appendChild(winDisplay);
+    console.log("You win!");
+  }
+
+  /*
+   * Action to be taken when the user submits a guess.
+   * Parameters:
+   * - product: focus of the round
+   * - round: integer denoting the current round
+   */
+  handleSubmit(product, round) {
+    var guess;
+    guess = document.getElementById("input").value;
+    if (guess == product["price"]) {
+      this.setState({score: this.state.score + 100});
+      round += 1;
+      if (round === this.state.rounds) {
+        this.gameEnd();
+      } else {
+        this.playRound(round);
+      }
+    } else {
+      document.getElementById("input").value = "";
+      this.setState({score: this.state.score - 20});
+      if (this.state.score <= 0) {
+        this.setState({score: 0});
+      }
+      console.log("wrong");
+    }
+  }
+
+  /*
+   * Add the text input area and submit button to the round display.
+   * Parameters:
+   * - round: integer denoting the current round
+   */
+  addInput(round) {
+    var textInput = document.createElement("INPUT");
+    var submitButton = document.createElement("BUTTON");
+    var product = this.state.products[round];
+    var component = this;
+    var guess;
+    textInput.type = "text";
+    textInput.setAttribute("id", "input");
+    textInput.style.width = "20vw";
+    submitButton.innerHTML = "Submit";
+    submitButton.addEventListener("click", function() {
+      component.handleSubmit(product, round);
+    });
+    document.getElementById("frame").appendChild(textInput);
+    document.getElementById("frame").appendChild(submitButton);
+
+  }
+
+  /*
+   * Display a product's price in the frame.
+   * Parameters:
+   * - product: price of this product will be displayed
+   */
+  displayPrice(product) {
+    var price = document.createElement("P");
+    price.innerHTML = "$" + product["price"];
+    document.getElementById("frame").appendChild(price);
+  }
+
+  /*
+   * Play a round.
+   * Parameters:
+   * - round: integer denoting the current round
+   */
+  playRound(round) {
+    this.addProductImageToFrame(this.state.products[round]);
+    this.addInput(round);
+    this.displayPrice(this.state.products[round]);
+  }
+
+  /*
+   * Start game by randomsing the order of products and playing the first round.
+   */
+  startGame() {
+    document.getElementById("start-game").style.display = "none";
+    this.shuffleProductsArray();
+    this.playRound(0);
+  }
 
   componentDidMount() {
     var chosenCategory = this.props.location.pathname.split("/")[3];
@@ -65,9 +153,9 @@ class Game extends Component {
     return (
       <div>
         <h3 id="game-heading">Game page</h3>
-        <Button variant="raised" color="primary"
-        onClick={() => this.setUpRequest()}>
-          Get a random product image
+        <Button id="start-game" variant="raised" color="primary"
+        onClick={() => this.startGame()}>
+          Start game
         </Button>
         <div id="frame"/>
       </div>

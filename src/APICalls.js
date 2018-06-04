@@ -39,7 +39,6 @@ export class APICalls {
     var data = null;
     var products = [];
 
-
     xhr.withCredentials = false;
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {

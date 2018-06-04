@@ -23,6 +23,15 @@ class Categories extends Component {
   }
 
   /*
+   * Upon clicking radio button, set the component chosen category to be 
+   * the clicked value.
+   */
+  handleRadioClick(value) {
+    document.getElementById("continue").style.display = "inline-block";
+    this.setState({chosen: value});
+  }
+
+  /*
    * Gets categories in state and displpays them as options.
    */
   getCategories() {
@@ -45,14 +54,13 @@ class Categories extends Component {
       var component = this;
       radio.className = "category-button";
       radio.id = i;
-      radio.setAttribute("type", "radio");
-      radio.setAttribute("name", "category");
-      radio.setAttribute("value", catName);
+      radio.type = "radio";
+      radio.name = "category";
+      radio.value = catName;
       label.setAttribute("for", i);
       label.className = "category-label";
       radio.addEventListener("click", function() {
-        document.getElementById("continue").style.display = "inline-block";
-        component.setState({chosen: this.value});
+        component.handleRadioClick(this.value);
       });
       label.appendChild(document.createTextNode(catName))
       element.className = "category-list";
